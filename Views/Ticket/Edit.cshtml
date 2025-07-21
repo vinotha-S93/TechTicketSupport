@@ -1,0 +1,48 @@
+﻿
+@model TECHSUPPORTTICKET_MANAGEMENTSYSTEM.Models.Ticket
+@{
+    ViewBag.Title = "Edit Ticket";
+}
+
+<h2 class="text-center mb-4">Edit Ticket</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.TicketID)
+
+    <div class="form-horizontal">
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Subject)
+            @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Description)
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 4 })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Priority)
+            @Html.DropDownListFor(model => model.Priority, new SelectList(new[] { "Low", "Medium", "High" }, Model.Priority), "--Select Priority--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Priority)
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Status)
+            @Html.DropDownListFor(model => model.Status, new SelectList(new[] { "Open", "In Progress", "Resolved", "Closed" }, Model.Status), "--Select Status--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(model => model.AssignedTo)
+            @Html.TextBoxFor(model => model.AssignedTo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AssignedTo)
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+}

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TECHSUPPORTTICKET_MANAGEMENTSYSTEM.Models.Ticket>
+
+@{
+    ViewBag.Title = "Tickets";
+}
+
+<h2 class="text-center mb-4">All Tickets</h2>
+
+<p>
+    @Html.ActionLink("Create New Ticket", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.TicketID)</th>
+            <th>@Html.DisplayNameFor(m => m.CustomerID)</th>
+            <th>@Html.DisplayNameFor(m => m.Subject)</th>
+            <th>@Html.DisplayNameFor(m => m.Priority)</th>
+            <th>@Html.DisplayNameFor(m => m.Status)</th>
+            <th>@Html.DisplayNameFor(m => m.CreatedAt)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TicketID</td>
+                <td>@item.CustomerID</td>
+                <td>@item.Subject</td>
+                <td>@item.Priority</td>
+                <td>@item.Status</td>
+                <td>@item.CreatedAt.ToString("dd-MM-yyyy HH:mm")</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TicketID }, new { @class = "btn btn-sm btn-warning" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TicketID }, new { @class = "btn btn-sm btn-danger ml-2" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
